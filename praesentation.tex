@@ -31,6 +31,8 @@
 \usepackage{multirow}
 \usepackage{hyperref}
 \usepackage[noabbrev]{cleveref}
+\usetikzlibrary{calc,positioning,decorations.pathreplacing,calligraphy}
+\usepackage{upquote}
 
 \sisetup{%
     locale = DE,
@@ -74,6 +76,8 @@
 %\usepackage[style=numeric,bibencoding=utf8,backend=biber]{biblatex}
 %\addbibresource{literature.bib}
 
+
+
 \begin{document}
 
     \begin{frame}
@@ -81,6 +85,25 @@
     \end{frame}
 
 \section{Basics}
+
+\begin{frame}{Historie}
+    \begin{itemize}
+        \item 19. Jahrhundert Drucker für Telegramme
+        \item Teletype-writer
+        \begin{itemize}
+            \item Erste Möglichkeit für Ein-/Ausgabe an Computern
+            \item Auch per Telefonkabel
+        \end{itemize}
+        \item UNIX besaß TTY Treiber
+        \item Elektronische Terminals (Ende 1970er)
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Historie}
+    \centering\includegraphics[height=0.9\textheight]{tty}
+\end{frame}
+
 
 \begin{frame}[fragile]{Begriffe}
 \begin{itemize}
@@ -189,49 +212,284 @@ Ein paar Beispiele für Flags, Parameter und Argumente:
 \end{frame}
 
 \begin{frame}[fragile]{Dateien und Ordner suchen}
-    content...
+\begin{itemize}
+\item Dateien suchen: \\
+\verb+find -name foo.txt+ \\
+\verb+find -name "*.txt*+ \\
+\verb+find -type d -name bar+
+\item Nach bestimmten Texten in Dateien suchen:\\
+\verb+grep -Hirn 'suchtext'+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Texteditoren}
+\begin{itemize}
+\item \verb+nano+
+\item \verb+micro+
+\item \verb+vi+ / \verb+vim+ / \verb+neovim+
+\item \verb+emacs+
+\end{itemize}
+\vspace{3mm}
+\includegraphics[width=.9\textwidth]{emacsvi.png}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{ls} im Detail}
+\begin{verbatim}
+ $ ls -lahd .bashrc .local
+ -rw-r--r-- 1 ruben ruben 3.5K Apr  4  2022 .bashrc
+ drwx------ 5 ruben ruben 4.0K Oct 19 13:39 .local
+\end{verbatim}
+
+\hspace*{0.2mm}
+\begin{tikzpicture}[scale=0.2]
+\newcommand{\drawbrace}[3]{\draw [decorate,decoration={brace,mirror}] ($(#1-0.45,0)$) -- ($(#2+0.45,0)$) node[below=6mm,anchor=south,pos=0.5] {#3};}
+\drawbrace{0}{10}{a}
+\drawbrace{11}{12}{b}
+\drawbrace{13}{18}{c}
+\drawbrace{19}{24}{d}
+\drawbrace{25}{29}{e}
+\drawbrace{30}{42}{f}
+\drawbrace{43}{50}{g}
+\end{tikzpicture}
+{
+\setbeamertemplate{enumerate items}[default]
+\begin{enumerate}[a)]
+\item Berechtigungen
+\item Anzahl Sub-Einträge
+\item Besitzer
+\item Besitzer-Gruppe
+\item Größe
+\item Erstell-Datum
+\item Name
+\end{enumerate}
+}
+
 \end{frame}
 
 \begin{frame}[fragile]{Berechtigungen}
-foo
+    \vspace{-8mm}
+
+\Huge
+\begin{verbatim}
+ -rw-r--r-- 1 ruben ruben 3.5K Apr  4  2022 .bashrc
+ drwx------ 5 ruben ruben 4.0K Oct 19 13:39 .local
+\end{verbatim}
+
+\normalsize
+
+\hspace*{3mm}
+\begin{tikzpicture}[scale=0.45]
+    \newcommand{\drawbrace}[3]{\draw [decorate,decoration={brace,mirror}] ($(#1+0.05,0)$) -- ($(#2-0.05,0)$) node[below=6mm,anchor=south,pos=0.5] {#3};}
+    \drawbrace{0}{1}{a}
+    \drawbrace{1}{4}{b}
+    \drawbrace{4}{7}{c}
+    \drawbrace{7}{10}{d}
+\end{tikzpicture}
+
+{
+    \setbeamertemplate{enumerate items}[default]
+    \begin{enumerate}[a)]
+        \item Ordner?
+        \item Benutzer (\texttt{u})
+        \item Gruppe (\texttt{g})
+        \item Alle (\texttt{a})
+    \end{enumerate}
+}
+
+\begin{itemize}
+\item \verb+d+: Directory
+\item \verb+r+: Read
+\item \verb+w+: Write
+\item \verb+x+: Execute
+\end{itemize}
+
 \end{frame}
 
-\begin{frame}[fragile]{Besitzer}
-    content...
+\begin{frame}[fragile]{Berechtigungen und Besitzer ändern}
+\begin{itemize}
+\item Datei für alle lesbar machen:\\
+\verb|chmod a+r foo.txt|
+\item Datei ausführbar machen:\\
+\verb|chmod +x foo.txt|
+\item Besitzer auf \enquote{hauke} ändern:\\
+\verb+chown hauke:hauke foo.txt+
+\end{itemize}
 \end{frame}
+
 
 \section{Netzwerk und Internet}
 
-\begin{frame}[fragile]{Dateien herunterladen}
-    content...
+\begin{frame}[fragile]{SSH}
+\begin{itemize}
+\item Mit SSH können wir uns auf entfernten Rechnern einloggen:
+\item \verb+ssh 4felgenh@rzssh1.informatik.uni-hamburg.de+
+\item \url{https://mafiasi.de/SSH}
+    \end{itemize}
 \end{frame}
 
-\subsection{Dateien Herunter- \& Hochladen}
+\begin{frame}[fragile]{Dateien herunterladen}
+\begin{itemize}
+\item \verb+curl example.org+
+\item \verb+wget example.org+
+\end{itemize}
+\end{frame}
 
-\subsection{SSH}
+\section{Skripte}
 
-\subsubsection{SSH-Keys Nutzen}
+\begin{frame}[fragile]{Shell-Skripte}
+\verb+bash+ ist eine vollwertige Programmiersprache mit
+\begin{itemize}
+\item Variablen
+\item Parametern
+\item Verzweigung
+\item Schleifen
+\item Funktionen
+\item Datenstrukturen
+\begin{itemize}
+\item Arrays
+\item Maps
+\end{itemize}
+\end{itemize}
+\end{frame}
 
-\subsubsection{SCP}
+\begin{frame}[fragile]{Mein erstes Shell-Skript}
+\begin{verbatim}
+#!/usr/bin/env bash
 
-\section{Prozesse}
+echo Hallo Welt
+\end{verbatim}
 
-\subsection{Prozesse Auflisten und System-Auslastung Anschauen}
+\begin{itemize}
+\item Skript ausführbar machen:\\
+\verb|chmod +x meinskript.sh|
+\item Skript ausführen:\\
+\verb+./meinskript.sh+
+\end{itemize}
+\end{frame}
 
-\subsection{Prozess Beenden}
+\begin{frame}[fragile]{Variablen}
+\begin{verbatim}
+#!/usr/bin/env bash
 
-\section{Texteditoren}
+wer=Welt
 
-\subsection{nano}
+echo Hallo $wer
 
-\subsection{micro}
+wer=mafia
 
-\subsection{vim}
+echo Hallo $wer
+\end{verbatim}
+\end{frame}
 
-\section{Konfiguration der Bash}
+\begin{frame}[fragile]{Parameter}
+\begin{verbatim}
+#!/usr/bin/env bash
 
-\section{man / help}
+wer=$1
 
-\section{Shell-Skripte}
+echo Hallo $wer
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Verzweigung}
+\begin{verbatim}
+#!/usr/bin/env bash
+
+wer=$1
+
+echo Hallo $wer
+
+if [ "$wer" == "mafia" ] ; then
+    food=Pizza
+else
+    food=Pasta
+fi
+
+echo Hier ist dein Teller $food
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Schleifen}
+\begin{verbatim}
+#!/usr/bin/env bash
+
+echo Ich aß heute 5 Kekse. Erst den 1. Keks...
+
+for i in {2..5} ; do
+    echo Und dann den $i. Keks...
+done
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Funktionen}
+\begin{verbatim}
+#!/usr/bin/env bash
+
+function hallo (
+    wer=$1
+    echo Hallo $wer
+)
+
+bye() (
+    wer=$1
+    echo Bye $wer
+)
+
+hallo $1
+bye $1
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Arten von Anführungszeichen}
+\vspace*{-2.5mm}
+\small
+\begin{itemize}
+\item Strings:\\
+\verb+name='Meine Textdatei.txt'+
+\item Erhalten von Whitespace:\\
+\verb+cat "$name"+
+\item Command Substitution:\\
+\verb+content="$(cat "$name")"+\\
+\verb+content="`cat "$name"`"+ (mit Backticks)
+\item Compound Statements:\\
+\verb+{echo foo ; echo bar}+\\
+\verb+(echo foo ; echo bar)+
+\item Test Brackets:\\
+\verb+if [ "$variable" == "foo" ] ; then ...+
+\item Arithmetik-Klammern:\\
+\verb|echo $(( 5 + 5 ))|
+\item Array Builder:\\
+\verb+echo {01..05}+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Tipps und Tricks}
+\begin{itemize}
+\item \url{https://www.shellcheck.net/}
+\item Unofficial Bash Strict Mode: \url{http://redsymbol.net/articles/unofficial-bash-strict-mode/}
+\item \url{https://raw.githubusercontent.com/felsenhower/file-templates/master/source/bash_script.sh}
+\end{itemize}
+
+\vspace*{5mm}
+
+\begin{verbatim}
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo 'Hello World!'
+\end{verbatim}
+\end{frame}
+
+\section{Sonstiges}
+
+\begin{frame}[fragile]{Sonstiges}
+\begin{itemize}
+\item htop
+\item kill
+\item awk
+\end{itemize}
+\end{frame}
+
 
 \end{document}
