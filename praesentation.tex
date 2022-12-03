@@ -497,6 +497,8 @@ echo 'Hello World!'
 \\
 \verb+wc+ & Zeichen, Wörter oder Zeilen zählen
 \\
+\verb+sort+ & Sortiere die Ausgabe
+\\
 \verb+read+ &Lies Eingaben von \verb+stdin+ in Variablen
 \\
 \verb+htop+ & Grafischer Taskmanager
@@ -506,8 +508,21 @@ echo 'Hello World!'
 \verb+sleep+ & Schlafe \verb+n+ Sekunden
 \\
 \verb+date+ & Gib Datum und Zeit aus
+\\
+\verb+file+ & Gibt den Dateitypen einer Datei aus
 \end{tabularx}
 \end{frame}
 
+\begin{frame}[fragile]{Fingerübungen}
+\begin{itemize}
+\item {} {\color{darkred}[Easy]} Schreibe ein Shell-Skript, das alle Textdateien in einem Ordner auflistet. Der Zielordner soll der erste Parameter des Skriptes sein.
+\item {} {\color{darkred}[Medium]} Gib zusätzlich die Gesamtgröße dieser Textdateien in Byte aus.
+\item {} {\color{darkred}[Advanced]} Betrachte nur Textdateien, die jünger als 1 Tag (86.400 Sekunden) sind.
+\begin{itemize}
+\item Tipp: UNIX Timestamps
+\item Tipp: Arithmetik-Klammern (z.B. \verb+$(( a < b ))+)
+\end{itemize}
+\end{itemize}
+\end{frame}
 
 \end{document}
