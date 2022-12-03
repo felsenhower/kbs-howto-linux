@@ -1,0 +1,237 @@
+\documentclass[compress]{beamer}
+
+\usetheme{Hamburg}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+%\usepackage[english]{babel}
+\usepackage[ngerman]{babel}
+
+\usepackage{eurosym}
+\usepackage{listings}
+\usepackage{lstautogobble}
+\usepackage{microtype}
+\usepackage{textcomp}
+\usepackage{siunitx}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{todonotes}
+\usepackage{xfrac}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage[noabbrev]{cleveref}
+
+\sisetup{%
+    locale = DE,
+    per-mode = symbol,
+    range-phrase = \text{--},
+    range-units = single,
+    separate-uncertainty = true
+}
+
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    frame=single,
+    numbers=left,
+    language=C,
+    breaklines=true,
+    breakatwhitespace=true,
+    postbreak=\hbox{$\hookrightarrow$ },
+    showstringspaces=false,
+    autogobble=true,
+    upquote=true,
+    tabsize=4,
+    captionpos=b,
+    morekeywords={int8_t,uint8_t,int16_t,uint16_t,int32_t,uint32_t,int64_t,uint64_t,size_t,ssize_t,off_t,intptr_t,uintptr_t,mode_t}
+}
+
+\title{HowTo: Linux}
+% \subtitle{Veranstaltung}
+\author{Ruben 14felgenh, Hauke 14stieler}
+%\institute{Arbeitsbereich Wissenschaftliches Rechnen\\Fachbereich Informatik\\Fakultät für Mathematik, Informatik und Naturwissenschaften\\Universität Hamburg}
+
+\usepackage{datetime}
+\newcommand{\datef}[3]{%
+    \newdate{datex}{#1}{#2}{#3}
+    \date{\protect\displaydate{datex}}
+}
+\let\oldthedate\thedate
+\makeatletter
+\makeatother
+\datef{06}{12}{2022}
+
+%\usepackage[style=numeric,bibencoding=utf8,backend=biber]{biblatex}
+%\addbibresource{literature.bib}
+
+\begin{document}
+
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+\section{Basics}
+
+\begin{frame}[fragile]{Begriffe}
+\begin{itemize}
+    \item Kommandozeile / Konsole / CLI
+    \item Shell
+    \begin{itemize}
+\item \verb+sh+
+\item \verb+bash+
+\item \verb+zsh+
+\item \verb+ksh+
+\item \verb+csh+
+\item \verb+dash+
+\item \verb+fish+
+\end{itemize}
+\item Terminal
+\item Terminal-Emulator
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Befehle}
+\begin{itemize}
+\item Shell-Built-Ins:
+\begin{itemize}
+\item \verb+pwd+
+\item \verb+cd+
+\item \verb+echo+
+\item \verb+true+
+\item \verb+false+
+\item \verb+type+
+\end{itemize}
+\item Programme:
+\begin{itemize}
+\item \verb+firefox+
+\item \verb+touch+
+\item \verb+ls+
+\item \verb+cat+
+\item \verb+man+
+\item \verb+less+
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Argumente u.Ä.}
+Ein paar Beispiele für Flags, Parameter und Argumente:
+\begin{itemize}
+\item \verb+type echo+
+\item \verb+ls --color=always+
+\item \verb+dd if=/dev/urandom count=1+
+\item \verb+firefox --help+
+\item \verb+firefox -h+
+\item \verb+man echo+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Ein- und Ausgaben}
+\begin{itemize}
+\item \verb+stdout+
+\item \verb+stderr+
+\item \verb+stdin+
+\item Exit Codes
+\item Ausgaben in Dateien umleiten:\\
+\verb+echo foobar > foobar.txt+
+\item Ausgaben als Eingaben für andere Programme verwenden: \\
+\verb+echo foobar | rev+
+\item Ausgaben in Variablen speichern:\\
+\verb+meinname=$(whoami)+\\
+\verb+echo $meinname+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{History und Autovervollständigung}
+\begin{itemize}
+\item History:
+\begin{itemize}
+\item Pfeiltasten
+\item \verb+history+
+\item \verb+cat ~/.bash_history+
+\item Strg + R
+\end{itemize}
+\item Autovervollständigung: Tab
+\end{itemize}
+\end{frame}
+
+\section{Dateisystem}
+
+\begin{frame}[fragile]{Dateien}
+\begin{itemize}
+\item Erstellen: \verb+touch foo.txt+
+\item Lesen: \verb+cat foo.txt+ oder \verb+less foo.txt+
+\item Schreiben: Benutze \verb+>+ oder \verb+>>+
+\item Filtern: \verb+grep suchtext foo.text+
+\item Kopieren: \verb+cp foo.txt bar.txt+
+\item Umbenennen / Verschieben: \verb+mv foo.txt foobar.txt+
+\item Löschen: \verb+rm bar.txt+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Ordner}
+\begin{itemize}
+\item Erstellen: \verb+mkdir foo+
+\item Inhalt auflisten: \verb+ls+
+\item Kopieren: \verb+cp -r foo bar+
+\item Umbenennen / Verschieben: \verb+mv foo foobar+
+\item Löschen: \verb+rm -r bar+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dateien und Ordner suchen}
+    content...
+\end{frame}
+
+\begin{frame}[fragile]{Berechtigungen}
+foo
+\end{frame}
+
+\begin{frame}[fragile]{Besitzer}
+    content...
+\end{frame}
+
+\section{Netzwerk und Internet}
+
+\begin{frame}[fragile]{Dateien herunterladen}
+    content...
+\end{frame}
+
+\subsection{Dateien Herunter- \& Hochladen}
+
+\subsection{SSH}
+
+\subsubsection{SSH-Keys Nutzen}
+
+\subsubsection{SCP}
+
+\section{Prozesse}
+
+\subsection{Prozesse Auflisten und System-Auslastung Anschauen}
+
+\subsection{Prozess Beenden}
+
+\section{Texteditoren}
+
+\subsection{nano}
+
+\subsection{micro}
+
+\subsection{vim}
+
+\section{Konfiguration der Bash}
+
+\section{man / help}
+
+\section{Shell-Skripte}
+
+\end{document}
