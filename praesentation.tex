@@ -193,11 +193,15 @@ Ein paar Beispiele für Flags, Parameter und Argumente:
 \begin{itemize}
 \item Erstellen: \verb+touch foo.txt+
 \item Lesen: \verb+cat foo.txt+ oder \verb+less foo.txt+
-\item Schreiben: Benutze \verb+>+ oder \verb+>>+
+\item Schreiben:
+\begin{itemize}
+\item \verb+>+ überschreibt die Datei
+\item \verb+>>+ hängt hinten an die Datei an.
+\end{itemize}
 \item Filtern: \verb+grep suchtext foo.text+
-\item Kopieren: \verb+cp foo.txt bar.txt+
-\item Umbenennen / Verschieben: \verb+mv foo.txt foobar.txt+
-\item Löschen: \verb+rm bar.txt+
+\item Kopieren: \verb+cp quelle.txt ziel.txt+
+\item Umbenennen / Verschieben: \verb+mv vorher.txt nachher.txt+
+\item Löschen: \verb+rm foo.txt+
 \end{itemize}
 \end{frame}
 
@@ -216,9 +220,9 @@ Ein paar Beispiele für Flags, Parameter und Argumente:
 \begin{itemize}
 \item Erstellen: \verb+mkdir foo+
 \item Inhalt auflisten: \verb+ls+
-\item Kopieren: \verb+cp -r foo bar+
-\item Umbenennen / Verschieben: \verb+mv foo foobar+
-\item Löschen: \verb+rm -r bar+
+\item Kopieren: \verb+cp -r quelle ziel+
+\item Umbenennen / Verschieben: \verb+mv vorher nachher+
+\item Löschen: \verb+rm -r foo+
 \end{itemize}
 \end{frame}
 
@@ -260,7 +264,7 @@ Ein paar Beispiele für Flags, Parameter und Argumente:
 \item Besitzer
 \item Besitzer-Gruppe
 \item Größe
-\item Erstell-Datum
+\item Zeit der letzten Änderung
 \item Name
 \end{enumerate}
 }
@@ -291,9 +295,9 @@ Ein paar Beispiele für Flags, Parameter und Argumente:
     \setbeamertemplate{enumerate items}[default]
     \begin{enumerate}[a)]
         \item Ordner?
-        \item Benutzer (\texttt{u})
-        \item Gruppe (\texttt{g})
-        \item Alle (\texttt{a})
+        \item Besitzer (\texttt{u})
+        \item Besitzer-Gruppe (\texttt{g})
+        \item Alle anderen (\texttt{o})
     \end{enumerate}
 }
 
@@ -313,7 +317,7 @@ Ein paar Beispiele für Flags, Parameter und Argumente:
 \item Datei ausführbar machen:\\
 \verb|chmod +x foo.txt|
 \item Besitzer auf \enquote{hauke} ändern:\\
-\verb+chown hauke:hauke foo.txt+
+\verb+chown hauke:haukesgruppe foo.txt+
 \end{itemize}
 \end{frame}
 
@@ -441,9 +445,9 @@ bye $1
 \end{verbatim}
 \end{frame}
 
-\begin{frame}[fragile]{Arten von Anführungszeichen}
+\begin{frame}[fragile]{Anführungszeichen und Klammern}
 \vspace*{-2.5mm}
-\small
+\footnotesize
 \begin{itemize}
 \item Strings:\\
 \verb+name='Meine Textdatei.txt'+
@@ -451,11 +455,12 @@ bye $1
 \verb+cat "$name"+
 \item Command Substitution:\\
 \verb+content="$(cat "$name")"+\\
-\verb+content="`cat "$name"`"+ (mit Backticks)
+\verb+content="`cat "$name"`"+
 \item Compound Statements:\\
 \verb+{echo foo ; echo bar}+\\
 \verb+(echo foo ; echo bar)+
 \item Test Brackets:\\
+\verb+if [[ "$variable" == "foo" ]] ; then ...+
 \verb+if [ "$variable" == "foo" ] ; then ...+
 \item Arithmetik-Klammern:\\
 \verb|echo $(( 5 + 5 ))|
@@ -523,7 +528,7 @@ echo 'Hello World!'
 \item {} {\color{darkred}[Advanced]} Betrachte nur Textdateien, die vor weniger als 1 Tag (86.400 Sekunden) geändert wurden.
 \begin{itemize}
 \item Tipp: UNIX Timestamps
-\item Tipp: Arithmetik-Klammern (z.B. \verb+$(( a < b ))+)
+%\item Tipp: Arithmetik-Klammern (z.B. \verb+$(( a < b ))+)
 \end{itemize}
 \end{itemize}
 \end{frame}
