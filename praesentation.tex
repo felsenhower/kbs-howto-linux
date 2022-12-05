@@ -86,22 +86,42 @@
 
 \section{Basics}
 
-\begin{frame}{Historie}
+\begin{frame}{Terminal Historie}
     \begin{itemize}
         \item 19. Jahrhundert Drucker für Telegramme
-        \item Teletype-writer
+        \item Später \textbf{T}ele\textbf{ty}pe-writer (TTY)
         \begin{itemize}
-            \item Erste Möglichkeit für Ein-/Ausgabe an Computern
+        	\item Gerät für Ein-/Ausgabe an Computern = Terminal
             \item Auch per Telefonkabel
+            \item UNIX besaß TTY Treiber
         \end{itemize}
-        \item UNIX besaß TTY Treiber
-        \item Elektronische Terminals (Ende 1970er)
+        \item Dumb Terminals (bis 1970er)
+        \item Smart Terminals (ab Mitte 1960er)
+        \item Virtuelle/Pseudo Terminals
+        \begin{itemize}
+        	\item \textbf{P}seudo-Tele\textbf{ty}pe -- PTY
+        	\item ab Mitte 1990er
+        	\item Terminal-Emulatoren (z.B. \texttt{konsole}, \texttt{xterm} oder \texttt{gnome-terminal}) verbinden sich mit PTY
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
 
 \begin{frame}{Historie}
-    \centering\includegraphics[height=0.9\textheight]{tty}
+	\begin{center}
+		\includegraphics[height=0.7\textheight]{tty}
+		\\
+		Teletype ASR-33 (1963) mit Papierrolle als Ausgabe.
+	\end{center}
+\end{frame}
+
+\begin{frame}{Historie}
+	\begin{center}
+		\only<1>{\includegraphics[height=0.7\textheight]{ADM-3A}}
+		\only<2>{\includegraphics[height=0.7\textheight]{ADM-3A-zoomed-in}}
+		\\
+		\only<1-2>{Terminal ADM-3A (1976)}\visible<2>{: "`\raisebox{-0.77ex}{\~{}}"' (Tilde) auf "`Home"'-Taste, Pfeile auf H J K L Tasten \& 80 Zeichen pro Zeile.}
+	\end{center}
 \end{frame}
 
 
