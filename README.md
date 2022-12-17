@@ -12,4 +12,4 @@ Materialien zum **KBS – HowTo: Linux**.
 
 Mittels `make` werden die PDFs für Folien und Handout gebaut.
 
-Es gibt auch eine Online-Versi-->on des [Handout](handout.md)s.
+Es gibt auch eine Online-Version des [Handout](handout.md)s.-->
