@@ -1,15 +1,11 @@
 # kbs-howto-linux
 
-Materialien zum **KBS – HowTo: Linux**.
+Folien und Übungen für das [KunterBunteSeminar (KBS)](https://mafiasi.de/KBS) **"HowTo: Linux"**
 
-# Abhängigkeiten
+## Bauen
 
-- `make`
-- `latexmk`
-<!--
-- `pandoc`
-# Bauen
-
-Mittels `make` werden die PDFs für Folien und Handout gebaut.
-
-Es gibt auch eine Online-Version des [Handout](handout.md)s.-->
+```bash
+$ git clone https://github.com/felsenhower/kbs-howto-linux.git
+$ cd kbs-howto-linux
+$ make
+```
